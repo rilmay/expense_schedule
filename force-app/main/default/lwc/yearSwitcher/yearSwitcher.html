@@ -1,0 +1,13 @@
+<template>
+    <ul class="slds-button-group-list slds-p-left_medium">
+        <li class={previousClass}>
+            <button class="slds-button slds-button_neutral " onclick={previousYear}>Previous</button>
+        </li>
+        <li>
+            <button class="slds-button slds-button_neutral slds-is-selected">{year}</button>
+        </li>
+        <li class={nextClass}>
+            <button class="slds-button slds-button_neutral" onclick={nextYear}>Next</button>
+        </li>
+    </ul>    
+</template>

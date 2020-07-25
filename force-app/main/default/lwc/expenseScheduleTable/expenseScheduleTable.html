@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-m-around_medium" style="height: 450px;">
+        <template if:true={schedule}>
+            <lightning-datatable
+                show-row-number-column=false
+                key-field="Id"
+                data={schedule}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onrowselection={setSelectedRows}
+                sorted-by={sortBy}
+                sorted-direction={sortDirection}
+                onsort={handleSortdata}>
+            </lightning-datatable>
+        </template>
+    </div>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_5-of-6">
+            <lightning-record-edit-form object-api-name="Expense_schedule__c" onsuccess={handleSuccess}>
+                <div class="slds-grid">
+                    <lightning-messages></lightning-messages>
+                    <div class="slds-col slds-size_1-of-3 slds-p-left_medium">
+                        <lightning-input-field required field-name="Name" variant="label-hidden"></lightning-input-field>
+                        <lightning-input-field field-name="Year__c" value={year} class="slds-hide"></lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3 slds-p-left_medium">
+                        <lightning-button
+                            class="slds-m-top_small slds-align_center"
+                            type="submit"
+                            label="Insert category">
+                        </lightning-button>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </div>
+        <template if:true={selectedIds.length}>
+            <div class="slds-col slds-size_2-of-12 slds-col_bump-left slds-p-right_medium">
+                <div class="slds-float_right ">
+                    <lightning-button
+                        onclick={deleteSelected}
+                        class="slds-m-top_small"
+                        label="Delete selected">
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>
